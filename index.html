@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shaurya Srivastav | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(21, 29, 46, 0.85);
+      --card-inner: rgba(30, 41, 65, 0.6);
+      --accent: #6366f1;
+      --accent-glow: #06b6d4;
+      --accent-hover: #4f46e5;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-body: #cbd5e1;
+      --border: rgba(99, 102, 241, 0.2);
+      --badge-bg: rgba(99, 102, 241, 0.12);
+      --badge-border: rgba(99, 102, 241, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #090d16 65%);
+      color: var(--text-main);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 48px 16px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 740px;
+      width: 100%;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.08);
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 155px;
+      height: 155px;
+      margin: 0 auto 18px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid #818cf8;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.35);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-size: 15px;
+      color: var(--accent-glow);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .location {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    h2 {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #a5b4fc;
+    }
+
+    p {
+      color: var(--text-body);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    .badge-group {
+      margin-bottom: 14px;
+    }
+
+    .badge-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e0e7ff;
+    }
+
+    .item-card {
+      background: var(--card-inner);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .item-meta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-glow);
+      margin: 4px 0 6px 0;
+    }
+
+    .item-desc {
+      font-size: 13.5px;
+      color: var(--text-body);
+    }
+
+    .cert-img-wrapper {
+      margin-top: 12px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      max-width: 320px;
+      cursor: pointer;
+    }
+
+    .cert-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .cert-img:hover {
+      transform: scale(1.03);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 12px;
+      border: 2px solid var(--accent);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      animation: zoomIn 0.25s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #fff;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+      padding: 13px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14.5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    }
+
+    .btn-secondary {
+      background: rgba(30, 41, 65, 0.8);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(45, 60, 94, 0.8);
+      border-color: #818cf8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile-card">
+      
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="avatar-wrapper">
+          <img src="https://i.ibb.co/WWdcrvZZ/magic-edit-TUFIUWp-FYWFQN1kj-MSMw-Y2-Q1-MWI0-Yjdm-Y2-U2-NGJk-Zj-Ux-NWE1-NDAx-MDdl-ODQ0-ZSMx-20260727-095536.png" alt="Shaurya Srivastav" class="avatar">
+        </div>
+        <h1>Shaurya Srivastav</h1>
+        <p class="tagline">BCA Student | SEO Specialist & Python Enthusiast</p>
+        <p class="location">New Ashok Nagar, Delhi</p>
+      </div>
+
+      <!-- Career Objective -->
+      <div class="section">
+        <h2>Career Objective</h2>
+        <p>
+          Motivated BCA student with a strong interest in SEO and Python programming. Eager to apply my technical skills, continuously learn, and contribute effectively in a professional environment.
+        </p>
+      </div>
+
+      <!-- Technical Skills & Tools -->
+      <div class="section">
+        <h2>Technical Skills & Tools</h2>
+        
+        <div class="badge-group">
+          <div class="badge-title">Programming:</div>
+          <div class="skills-grid">
+            <span class="badge">Python (Basics)</span>
+          </div>
+        </div>
+
+        <div class="badge-group" style="margin-top: 12px;">
+          <div class="badge-title">SEO Specializations:</div>
+          <div class="skills-grid">
+            <span class="badge">On-Page SEO</span>
+            <span class="badge">Off-Page SEO</span>
+            <span class="badge">Technical SEO</span>
+            <span class="badge">Keyword Research</span>
+            <span class="badge">Content Optimization</span>
+            <span class="badge">Local SEO</span>
+          </div>
+        </div>
+
+        <div class="badge-group" style="margin-top: 12px;">
+          <div class="badge-title">SEO Tools:</div>
+          <div class="skills-grid">
+            <span class="badge">Google Search Console</span>
+            <span class="badge">Google Analytics (GA4)</span>
+            <span class="badge">Google Keyword Planner</span>
+            <span class="badge">Google Trends</span>
+            <span class="badge">Ubersuggest</span>
+            <span class="badge">Ahrefs (Basic)</span>
+            <span class="badge">Semrush (Basic)</span>
+            <span class="badge">Screaming Frog SEO Spider</span>
+            <span class="badge">Yoast SEO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <h2>Projects</h2>
+        
+        <div class="item-card">
+          <div class="item-title">SEO Practice Project</div>
+          <div class="item-desc">
+            Researched keywords for sample websites, optimized page titles, meta descriptions, headings, and content, improved internal linking, and fixed technical issues. Analyzed rankings and performance using Google Search Console and Google Analytics.
+          </div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-title">Python Learning Project</div>
+          <div class="item-desc">
+            Currently learning Python fundamentals including variables, data types, loops, functions, and conditional statements through practical examples and small problem-solving programs.
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <h2>Education</h2>
+        
+        <div class="item-card">
+          <div class="item-title">Bachelor of Computer Application (BCA) — Pursuing</div>
+          <div class="item-meta">Indira Gandhi National Open University (IGNOU) | Expected: 2029</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-title">Higher Secondary (Class XII)</div>
+          <div class="item-meta">Govt. Co-Ed Sr. Sec. School | 2026 | Percentage: 63%</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-title">Secondary School (Class X)</div>
+          <div class="item-meta">Govt. Co-Ed Sr. Sec. School | 2024 | Percentage: 76%</div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="section">
+        <h2>Certifications</h2>
+        
+        <div class="item-card">
+          <div class="item-title">On-Page SEO and AI Search Essentials with Semrush</div>
+          <div class="item-meta">Semrush Academy | 11 August 2026 | ID: 8177cb7a26</div>
+          <div class="cert-img-wrapper" onclick="openModal('https://i.ibb.co/TqHRZD2r/Screenshot-20260811-173335-Chrome.jpg')">
+            <img src="https://i.ibb.co/TqHRZD2r/Screenshot-20260811-173335-Chrome.jpg" alt="Semrush Certificate" class="cert-img">
+          </div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-title">Mastering Power BI: Data Analysis and Dashboard Creation</div>
+          <div class="item-meta">Skill India Digital Hub (PHN Technology Pvt. Ltd.) | 08 August 2026</div>
+          <div class="cert-img-wrapper" onclick="openModal('https://i.ibb.co/0j5hQwhG/Screenshot-20260808-170627-My-Files.jpg')">
+            <img src="https://i.ibb.co/0j5hQwhG/Screenshot-20260808-170627-My-Files.jpg" alt="Power BI Certificate" class="cert-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="section">
+        <h2>Languages</h2>
+        <div class="skills-grid">
+          <span class="badge">Hindi (Native)</span>
+          <span class="badge">English (Professional Working Proficiency)</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="btn-container">
+        <a href="mailto:shauryasrivastav762@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/shaurya-srivastav01" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Image Popup Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImg" alt="Certificate Preview">
+  </div>
+
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
